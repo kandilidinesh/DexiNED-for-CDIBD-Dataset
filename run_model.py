@@ -30,8 +30,12 @@ def config_model():
     parser.add_argument('--test_dataset', default='CLASSIC', choices=['BIPED', 'BSDS','MULTICUE','NYUD','PASCAL','CID','CDID']) # Added CDID dataset as an choice
     parser.add_argument('--dataset_dir',default=None,type=str) # default:'/opt/dataset/'
     parser.add_argument('--dataset_augmented', default=True,type=bool)
-    parser.add_argument('--train_list',default='train_rgb.lst', type=str) # BSDS train_pair.lst, SSMIHD train_rgb_pair.lst/train_rgbn_pair.lst
-    parser.add_argument('--test_list', default='test_pair.lst',type=str) # for NYUD&BSDS:test_pair.lst, ssmihd: msi_test.lst/vis_test.lst
+    #For BIPED Dataset
+    # parser.add_argument('--train_list',default='train_rgb.lst', type=str) # BSDS train_pair.lst, SSMIHD train_rgb_pair.lst/train_rgbn_pair.lst
+    # parser.add_argument('--test_list', default='test_pair.lst',type=str) # for NYUD&BSDS:test_pair.lst, ssmihd: msi_test.lst/vis_test.lst
+    #Modified For CDIBD Dataset
+    parser.add_argument('--train_list',default='train_list.lst', type=str)
+    parser.add_argument('--test_list', default='test_list.lst',type=str) 
     # SSMIHD_RGBN msi_valid_list.txt and msi_test_list.txt is for unified test
     parser.add_argument('--use_nir', default=False, type=bool)
     parser.add_argument('--use_dataset', default=False, type=bool) # test: dataset TRUE single image FALSE

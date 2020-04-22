@@ -1052,10 +1052,34 @@ def data_parser(args):
 
 # ************** for testing **********************
     elif args.model_state=='test':
-        base_dir = os.path.join(args.dataset_dir,args.test_dataset,'edges')\
-            if args.test_dataset.lower()=='BIPED' else os.path.join(args.dataset_dir,args.test_dataset)
+        #For BIPED Dataset
+        # base_dir = os.path.join(args.dataset_dir,args.test_dataset,'edges')\
+        #     if args.test_dataset.lower()=='BIPED' else os.path.join(args.dataset_dir,args.test_dataset)
 
-        if args.test_dataset.upper() == "BIPED":
+        #Modified for CDIBD - Setting the base directory as /dataset/CDIBD/boundary
+        base_dir = os.path.join(args.dataset_dir, args.train_dataset,'boundary') \
+            if args.train_dataset.lower() == 'CDIBD' else os.path.join(args.dataset_dir, args.train_dataset)
+
+        #For BIPED Dataset
+        # if args.test_dataset.upper() == "BIPED":
+        #     test_files_name = args.test_list
+        #     test_list_path = os.path.join(base_dir,test_files_name)
+        #     test_list = read_files_list(test_list_path)
+
+        #     test_samples = split_pair_names(args, test_list, base_dir)
+        #     n_test = len(test_samples)
+        #     print_info(" Enterely testing set-up from {}, size: {}".format(test_list_path, n_test))
+
+        #     test_ids = np.arange(n_test)
+        #     # np.random.shuffle(test_ids)
+
+        #     print_info("testing set-up from {}, size: {}".format(test_list_path, len(test_ids)))
+        #     cache_out = [test_samples, test_ids]
+
+        #     return cache_out
+        
+        #Modified for CDIBD Dataset
+        if args.test_dataset.upper() == "CDIBD":
             test_files_name = args.test_list
             test_list_path = os.path.join(base_dir,test_files_name)
             test_list = read_files_list(test_list_path)
@@ -1170,7 +1194,12 @@ def get_batch(arg,file_list, batch=None, use_batch=True):
 
     else:
         # for testing re-coding is needed
-        if arg.test_dataset=='BIPED' and (arg.model_state=='test' and arg.use_nir):
+
+        #For BIPED Dataset
+        # if arg.test_dataset=='BIPED' and (arg.model_state=='test' and arg.use_nir):
+
+        #Modified for CDIBD Dataset
+        if arg.test_dataset=='CDIBD' and (arg.model_state=='test' and arg.use_nir):
             x_nir = Image.open(file_list[0])
             x_rgb = Image.open(file_list[1])
             real_size = x_rgb.shape
@@ -1211,7 +1240,10 @@ def get_batch(arg,file_list, batch=None, use_batch=True):
             y = cv.imread(file_list[1])
             real_size = x.shape
 
-            if arg.test_dataset.lower()=='biped' or arg.test_dataset.lower()=='multicue':
+            #For BIPED Dataset
+            # if arg.test_dataset.lower()=='biped' or arg.test_dataset.lower()=='multicue':
+            #Modified for CDIBD Dataset
+            if arg.test_dataset.lower()=='cdibd' or arg.test_dataset.lower()=='multicue':
                 pass
             else:
                 x = cv.resize(x, dsize=(arg.image_width, arg.image_height))
