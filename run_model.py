@@ -38,7 +38,7 @@ def config_model():
     parser.add_argument('--test_list', default='test_list.lst',type=str) 
     # SSMIHD_RGBN msi_valid_list.txt and msi_test_list.txt is for unified test
     parser.add_argument('--use_nir', default=False, type=bool)
-    parser.add_argument('--use_dataset', default=False, type=bool) # test: dataset TRUE single image FALSE
+    parser.add_argument('--use_dataset', default=False, type=bool) # For testing mode on a dataset set this as True
     # model config
     parser.add_argument('--model_state', default='test', choices=['train','test','None']) # always in None
     parser.add_argument('--model_name', default='DXN',choices=['DXN','XCP','None'])
