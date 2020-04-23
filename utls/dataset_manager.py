@@ -1022,8 +1022,8 @@ def data_parser(args):
             #if args.train_dataset.lower() == 'biped' else os.path.join(args.dataset_dir, args.train_dataset)
 
         #Modified for CDIBD - Setting the base directory as /dataset/CDIBD/boundary
-            base_dir = os.path.join(args.dataset_dir, args.train_dataset,'boundary') \
-        if args.train_dataset.lower() == 'cdibd' else os.path.join(args.dataset_dir, args.train_dataset)
+        base_dir = os.path.join(args.dataset_dir, args.train_dataset,'boundary') \
+            if args.train_dataset.lower() == 'cdibd' else os.path.join(args.dataset_dir, args.train_dataset)
 
         #For CDIBD train_list_path will be /dataset/CDIBD/boundary - Filename: train_list.lst
         train_list_path = os.path.join(base_dir, train_files_name)
